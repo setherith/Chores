@@ -7,7 +7,8 @@ app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
 
 app.set('views', __dirname + '/views');
-app.set
+
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.use('/', function(req, res) {
 	res.render('test.html', {'message' : 'hello rendered world'});
