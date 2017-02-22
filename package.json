@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/setherith/Chores/issues"
   },
-  "homepage": "https://github.com/setherith/Chores#readme"
+  "homepage": "https://github.com/setherith/Chores#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "hbs": "^4.0.1",
+    "mysql": "^2.13.0"
+  }
 }
