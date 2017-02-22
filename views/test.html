@@ -7,9 +7,16 @@
 	
 	<h1>data recieved:</h1>
 
-	{{#each message}}
-		<li>{{id}} - {{name}}</li>
-	{{/each}}
+	<form action="/update" method="post">
+		<label>Tasks:</label>
+		<select name="task">
+			{{#each message}}
+				<option value="{{name}}">{{name}}</option>
+			{{/each}}
+		</select>
+
+		<button type="submit">Submit</button>
+	</form>
 
 
 	{{>footer}}
