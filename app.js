@@ -1,5 +1,6 @@
 var express = require('express');
 var hbs = require('hbs');
+var sql = require('mysql');
 
 var app = express();
 
@@ -10,8 +11,19 @@ app.set('views', __dirname + '/views');
 
 hbs.registerPartials(__dirname + '/views/partials');
 
+var conn = sql.createConnection({
+	host: "localhost",
+	user: "chores_user",
+	password: "user_chores",
+	database: "chores"
+});
+
 app.use('/', function(req, res) {
-	res.render('test.html', {'message' : 'hello rendered world'});
+	conn.query('select * from tasks', function(err, rows) {
+		if(err) throw err;
+		res.render('test.html', {'message' : rows});
+	});
+	
 });
 
 app.listen(process.env.PORT || 3000, function() {
