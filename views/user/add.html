@@ -1,16 +1,26 @@
-<!doctype html>
+{{>header}}
 
-<html>
+<style>
+	.error {
+		border: red 1px solid;
+		background: #ffeeee;
+		color: #333;
+		padding: 10px;
+		text-align: center;
+		width: 100px;
+		margin: 20px;
+	}
+</style>
 
+	
 <body>
-	{{>header}}
 	
 	<h1>Create Account</h1>
 
 	<form action="/user/add" method="post">
 		
 		<label>Username:</label>
-		<input type="text" name="username" />
+		<input type="text" name="username" value="{{username}}" />
 		
 		<label>Password:</label>
 		<input type="password" name="password" />
@@ -18,14 +28,14 @@
 		<label>Confirm Password:</label>
 		<input type="password" name="confirmpw" />
 		
+		{{#if err}}
+			<div class="error">{{err}}</div>
+		{{/if}}
+
 		<label>Email:</label>
-		<input type="email" name="email" />
+		<input type="email" name="email" value="{{email}}" />
 		
 		<button type="submit">Submit</button>
 	</form>
-
-
-	{{>footer}}
 </body>
-
-</html>
+{{>footer}}

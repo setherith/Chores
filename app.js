@@ -3,6 +3,8 @@ var hbs = require('hbs');
 var sql = require('mysql');
 var parser = require('body-parser');
 
+var controllers = require('./controllers.js');
+
 var app = express();
 
 app.set('view engine', 'hbs');
@@ -25,26 +27,7 @@ var conn = sql.createConnection({
 	database: "chores"
 });
 
-app.get('/', function(req, res) {
-	conn.query('select * from tasks', function(err, rows) {
-		if(err) throw err;
-		res.render('test.html', {'message' : rows});
-	});
-	
-});
-
-app.get('/user/add', function(req, res) {
-	res.render('./user/add.html');
-});
-
-app.post('/user/add', function(req, res) {
-	console.log(req.body);
-});
-
-app.post('/update', function(req, res) {
-	console.log(req.body);
-	res.redirect('/');
-});
+controllers(app, conn);
 
 app.listen(process.env.PORT || 3000, function() {
 	console.log("Server Running...on port " + (process.env.PORT || 3000));
