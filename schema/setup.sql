@@ -60,5 +60,24 @@ BEGIN
         values (p_username, md5(p_password), sysdate()); 
     end if;
 END$$
+DELIMITER ;
+
+-- FUNCTIONS
+
+drop function if exists `validate_user`;
+DELIMITER $$
+use `chores`$$
+create function `validation_user` (p_username varchar(45), p_password varchar(32)) returns int(1)
+begin
+  declare result int(1);
+  
+  select count(1)
+  from users
+  where username = p_username
+  and `users`.`password` = md5(p_password)
+  into result;
+  
+  return result;
+END$$
 
 DELIMITER ;
