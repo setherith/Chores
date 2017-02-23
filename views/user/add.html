@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html>
+
+<body>
+	{{>header}}
+	
+	<h1>Create Account</h1>
+
+	<form action="/user/add" method="post">
+		
+		<label>Username:</label>
+		<input type="text" name="username" />
+		
+		<label>Password:</label>
+		<input type="password" name="password" />
+		
+		<label>Confirm Password:</label>
+		<input type="password" name="confirmpw" />
+		
+		<label>Email:</label>
+		<input type="email" name="email" />
+		
+		<button type="submit">Submit</button>
+	</form>
+
+
+	{{>footer}}
+</body>
+
+</html>

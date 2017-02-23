@@ -33,7 +33,13 @@ app.get('/', function(req, res) {
 	
 });
 
+app.get('/user/add', function(req, res) {
+	res.render('./user/add.html');
+});
 
+app.post('/user/add', function(req, res) {
+	console.log(req.body);
+});
 
 app.post('/update', function(req, res) {
 	console.log(req.body);
