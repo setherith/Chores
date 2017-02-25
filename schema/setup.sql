@@ -4,7 +4,7 @@ create schema `chores` default character set utf8 collate utf8_bin;
 
 -- USER
 use chores;
-drop user 'chores_user'@'localhost';
+drop user if exists 'chores_user'@'localhost';
 create user 'chores_user'@'localhost' identified by 'user_chores'; 
 grant select, update, execute on chores.* to 'chores_user'@'localhost';
 
