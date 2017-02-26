@@ -1,3 +1,4 @@
+{{>header}}
 <body>
     <h1>Chores</h1>
     <div>
@@ -5,7 +6,35 @@
 
         <ul>
             <li><a href="/user/login">Login</a></li>
-        </ul>
 
+
+        </ul>
+        <div id="board">
+            <table>
+                <tr>
+                    {{#each fields}}
+                        <td><strong>{{name}}</strong></td>
+                    {{/each}}
+                    <td><strong>actions</strong></td>
+                </tr>
+                {{#each model}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{created}}</td>
+                        <td>{{creator}}</td>
+                        <td>{{complete}}</td>
+                        <td>
+                            <button>Assign</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                {{/each}}                
+            </table>
+            <ul>
+                
+            </ul>
+        </div>
     </div>
 </body>
+{{>footer}}

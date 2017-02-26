@@ -14,6 +14,11 @@ CREATE TABLE `chores`.`tasks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id`));
+  
+ALTER TABLE `chores`.`tasks` 
+ADD COLUMN `created` DATETIME NOT NULL AFTER `name`,
+ADD COLUMN `creator` INT NOT NULL AFTER `created`,
+ADD COLUMN `complete` TINYINT NOT NULL AFTER `creator`;
 
 drop table if exists users;
 CREATE TABLE `chores`.`users` (
@@ -56,7 +61,6 @@ END$$
 DELIMITER ;
 
 -- FUNCTIONS
-
 drop function if exists `validate_user`;
 DELIMITER $$
 use `chores`$$
@@ -76,8 +80,10 @@ END$$
 DELIMITER ;
 
 -- SEED DATA
-insert into tasks (name)
-values ('Clean'), ('Cook'), ('Wash');
+insert into tasks (name, created, creator, complete)
+values ('Put dishes away', sysdate(), 1, false), 
+('Take rubbish out', sysdate(), 1, false), 
+('Clean cat litter tray', sysdate(), 1, false);
 
 insert into users (username, password, created)
 values ('test_user', md5('password123'), sysdate());

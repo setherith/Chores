@@ -17,13 +17,17 @@ module.exports = function(app, conn) {
             } else if(rows[0][fields[0].name] == 1) {
                 // Valid
                 console.log('User [' + req.body.username + '] logged on.');
+                res.render('./user/info.html');
             }
         });
     });
 
     // display the home page
     app.get('/', function(req, res) {
-        res.render('index.html');
+        conn.query('select * from tasks', function(err, rows, fields) {
+            if(err) console.log(err);
+            res.render('index.html', {'model' : rows, 'fields' : fields});
+        });
     });
 
     app.get('/user/add', function(req, res) {
