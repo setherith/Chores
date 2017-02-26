@@ -1,11 +1,17 @@
 {{>header}}
 <body>
-    <form action="/user/login" method="post">
-        <label>Username:</label>
-        <input type="text" name="username" />
-        <label>Password:</label>
-        <input type="password" name="password" />
-        <button type="submit">Login</button>
-    </form>
+    {{#if unlocked}}
+        <form action="/user/login" method="post">
+            <label>Username:</label>
+            <input type="text" name="username" />
+            <label>Password:</label>
+            <input type="password" name="password" />
+            <button type="submit">Login</button>
+        </form>
+    {{else}}
+        <div>
+            <p>sorry you failed to login!</p>
+        </div>
+    {{/if}}
 </body>
 {{>footer}}

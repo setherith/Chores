@@ -1,9 +1,15 @@
 // controllers for user views
 module.exports = function(app, conn) {
 
+    var login_fails = 0;
+
     // display login form
     app.get('/user/login', function(req, res) {
-        res.render('./user/login.html');
+        res.render('./user/login.html', 
+        {
+            'attempts' : login_fails,
+            'unlocked' : login_fails < 3
+        });
     });
 
     // process login request
@@ -14,7 +20,11 @@ module.exports = function(app, conn) {
             if (err) console.log(err);
             if (rows[0][fields[0].name] == 0) {
                 // Not Valid
-                console.log('Failed login');
+                login_fails++;
+                res.render('./user/login.html', {
+                    'attempts' : login_fails,
+                    'unlocked' : login_fails < 3
+                });
             } else if(rows[0][fields[0].name] == 1) {
                 // Valid
                 console.log('User [' + req.body.username + '] logged on.');
