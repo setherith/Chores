@@ -30,5 +30,5 @@ var conn = sql.createConnection({
 controllers(app, conn);
 
 app.listen(process.env.PORT || 3000, function() {
-	console.log("Server Running...on port " + (process.env.PORT || 3000));
+	console.log("Server Running...\nhttp://localhost:" + (process.env.PORT || 3000));
 });
