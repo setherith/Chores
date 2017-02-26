@@ -19,16 +19,23 @@ module.exports = function(app, conn) {
                     + req.body.password + '\');', function(err, rows, fields) {
             if (err) console.log(err);
             if (rows[0][fields[0].name] == 0) {
-                // Not Valid
+                // ----- Not Valid -----
                 login_fails++;
                 res.render('./user/login.html', {
                     'attempts' : login_fails,
                     'unlocked' : login_fails < 3
                 });
             } else if(rows[0][fields[0].name] == 1) {
-                // Valid
+                // ----- Valid -----
                 console.log('User [' + req.body.username + '] logged on.');
-                res.render('./user/info.html');
+                conn.query('select * from tasks', function(err, rows, fields) {
+                    if(err) console.log(err);
+                    res.render('index.html', {
+                        'model' : rows, 
+                        'fields' : fields,
+                        'username' : req.body.username
+                    });
+                });
             }
         });
     });

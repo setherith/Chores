@@ -2,11 +2,12 @@
 <body>
     <h1>Chores</h1>
     <div>
-        <p>Welcome to the site</p>
-
-        <ul>
-            <li><a href="/user/login">Login</a></li>
-        </ul>
+        {{#if username}}
+            <p>Hey, {{username}}!</p>
+        {{else}}
+            <p>Welcome to the site</p>
+        {{/if}}
+        <a href="/user/login">Login</a>
         <div id="board">
             <table>
                 <tr>
