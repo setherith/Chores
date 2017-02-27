@@ -60,6 +60,16 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP procedure IF EXISTS `add_task`;
+DELIMITER $$
+USE `chores`$$
+CREATE PROCEDURE `add_task` (in p_name varchar(150), in user_id int(11))
+BEGIN
+      insert into tasks (`name`, created, creator, complete)
+      values (p_name, sysdate(), user_id, false);
+END$$
+DELIMITER ;
+
 -- FUNCTIONS
 drop function if exists `validate_user`;
 DELIMITER $$
