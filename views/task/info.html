@@ -9,4 +9,9 @@
     <input type="text" value="{{task.created}}" />
     <label>complete:</label>
     <input type="checkbox" value="{{task.complete}}" />
+    <div>
+		<button>Update</button>
+		<button href="/task/remove/{{task.id}}">Delete</button>
+		<button>Take Ownership</button>
+    </div>
 </body>

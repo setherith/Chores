@@ -18,6 +18,14 @@ module.exports = function(app, conn) {
         });
     });
 
+	// task: remove
+	app.post('/task/remove/:id', function(req, res) {
+		conn.query('delete from tasks where id = ' + req.params.id, function(err, rows) {
+			if(err) console.log(err);
+			res.redirect('/');
+		});
+	});
+
     // display the home page
     app.get('/', function(req, res) {
         conn.query('select * from tasks', function(err, rows, fields) {
