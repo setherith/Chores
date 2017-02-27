@@ -32,6 +32,19 @@ CREATE TABLE `chores`.`users` (
 
 -- STORED PROCS
 USE `chores`;
+DROP procedure IF EXISTS `delete_task`;
+
+DELIMITER $$
+USE `chores`$$
+CREATE PROCEDURE `delete_task` (in p_id int(11))
+BEGIN
+	delete from tasks
+    where id = p_id;
+END$$
+
+DELIMITER ;
+
+USE `chores`;
 DROP procedure IF EXISTS `increment_complete`;
 DELIMITER $$
 use `chores`$$

@@ -9,27 +9,26 @@
         {{/if}}
         <a href="/user/login">Login</a>
         <div id="board">
-            <table>
-                <tr>
-                    {{#each fields}}
-                        <td><strong>{{name}}</strong></td>
-                    {{/each}}
-                    <td><strong>actions</strong></td>
-                </tr>
-                {{#each model}}
+            {{#if model}}
+                <table>
                     <tr>
-                        <td>{{id}}</td>
-                        <td><a href="/task/info/{{id}}">{{name}}</a></td>
-                        <td>{{created}}</td>
-                        <td>{{creator}}</td>
-                        <td>{{complete}}</td>
-                        <td>
-                            <button>Assign</button>
-                            <button>Delete</button>
-                        </td>
+                        {{#each fields}}
+                            <td><strong>{{name}}</strong></td>
+                        {{/each}}
                     </tr>
-                {{/each}}                
-            </table>
+                    {{#each model}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td><a href="/task/info/{{id}}">{{name}}</a></td>
+                            <td>{{created}}</td>
+                            <td>{{creator}}</td>
+                            <td>{{complete}}</td>
+                        </tr>
+                    {{/each}}                
+                </table>
+            {{else}}
+                <div>No results to display!</div>
+            {{/if}}
         </div>
     </div>
 </body>

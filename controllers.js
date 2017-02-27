@@ -20,7 +20,7 @@ module.exports = function(app, conn) {
 
 	// task: remove
 	app.post('/task/remove/:id', function(req, res) {
-		conn.query('delete from tasks where id = ' + req.params.id, function(err, rows) {
+		conn.query('call delete_task(' + req.params.id + ')', function(err, rows) {
 			if(err) console.log(err);
 			res.redirect('/');
 		});

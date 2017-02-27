@@ -11,7 +11,9 @@
     <input type="checkbox" value="{{task.complete}}" />
     <div>
 		<button>Update</button>
-		<button href="/task/remove/{{task.id}}">Delete</button>
+        <form action="/task/remove/{{task.id}}" method="post">
+		    <button type="submit">Delete</button>
+        </form>
 		<button>Take Ownership</button>
     </div>
 </body>
