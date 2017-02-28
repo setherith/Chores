@@ -1,13 +1,19 @@
 {{>header}}
 <body>
     {{#if unlocked}}
-        <form action="/user/login" method="post">
-            <label>Username:</label>
-            <input type="text" name="username" />
-            <label>Password:</label>
-            <input type="password" name="password" />
-            <button type="submit">Login</button>
-        </form>
+        <div class="form-group col-md-3 col-md-offset-4" style="top: 30px;">
+            <form action="/user/login" method="post">
+                <label>Username:</label>
+                <input class="form-control" type="text" name="username" />
+                <label>Password:</label>
+                <input class="form-control" type="password" name="password" />
+                <hr>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                    <span style="padding-left: 10px;">Need an account? <a href="#">Sign up.</a></span>
+                </div>
+            </form>
+        </div>
     {{else}}
         <div>
             <p>sorry you failed to login!</p>
