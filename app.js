@@ -7,6 +7,9 @@ var controllers = require('./controllers.js');
 
 var app = express();
 
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+
 app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
 

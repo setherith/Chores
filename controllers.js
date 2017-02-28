@@ -8,6 +8,10 @@ module.exports = function(app, conn) {
     var taskController = require('./views/task/taskController.js');
     taskController(app, conn);
 
+    app.get('/test', function(req, res) {
+        res.render('test.html', {'message' : "this is test data"});
+    });
+
     // display the home page
     app.get('/', function(req, res) {
         conn.query('select * from tasks', function(err, rows, fields) {
