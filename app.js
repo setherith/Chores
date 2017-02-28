@@ -9,6 +9,7 @@ var app = express();
 
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/css', express.static(__dirname + '/css'));
 
 app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
