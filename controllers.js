@@ -9,7 +9,7 @@ module.exports = function(app, conn) {
     taskController(app, conn);
 
     app.get('/test', function(req, res) {
-        res.render('test.html', {'message' : "this is test data"});
+        res.render('test.html', {'message' : "Hello, World!"});
     });
 
     // display the home page
