@@ -1,25 +1,31 @@
 {{>header}}
 <body>
-    <h1>Chores</h1>
-    <div>
-        {{#if username}}
-            <p>Hey, {{username}}!</p>
-        {{else}}
-            <p>Welcome to the site</p>
-        {{/if}}
-        <a href="/user/login">Login</a>
-        <a href="/task/add">Add Task</a>
-        <div id="board">
+    <div class="container">
+        <div class="row">
+            {{#if username}}
+                <h3>Hey, {{username}}!</h3>
+            {{else}}
+                <h3>Welcome to the site</h3>
+            {{/if}}
+            <ul class="navbar">
+                <li><a href="/user/login">Login</a></li>
+                <li><a href="/task/add">Add Task</a></li>
+            </ul>
+        </div>
+
+        <div id="board" class="row">
             {{#if model}}
-                <table>
-                    <tr>
-                        {{#each fields}}
-                            <td><strong>{{name}}</strong></td>
-                        {{/each}}
-                    </tr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>created</td>
+                            <td>creator</td>
+                            <td>complete</td>
+                        </tr>
+                    </thead>
                     {{#each model}}
                         <tr>
-                            <td>{{id}}</td>
                             <td><a href="/task/info/{{id}}">{{name}}</a></td>
                             <td>{{created}}</td>
                             <td>{{creator}}</td>
