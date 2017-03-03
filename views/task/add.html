@@ -3,16 +3,25 @@
     <div class="form-group col-md-4 col-md-offset-4">
         <h3>Add Task</h3>
         <form action="/task/add" method="post">
-            <label>Task: </label>
-            <input id="name" type="text" name="name" class="form-control" onkeyup="count(this)" />
-            <div id="charNum"></div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label>Task: </label>
+                <input id="name" type="text" name="name" class="form-control" onkeyup="count(this)" />
+                <div id="charNum" style="float: right;">0 / 150</div>
+            </div>
+            <button id="button" type="submit" class="btn btn-primary">Add</button>
         </form>
     </div>
     <script>
         function count(val) {
             var len = val.value.length;
-            $('#charNum').text(len);
+            $('#charNum').text(len + ' / 150');
+            if(len > 150) {
+                $('#button').attr('disabled', true);
+                $('#charNum').css('color', 'red');
+            } else {
+                $('#button').attr('disabled', false);
+                $('#charNum').css('color', 'black');
+            }
         }
     </script>
 
