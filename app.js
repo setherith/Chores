@@ -2,10 +2,25 @@ var express = require('express');
 var hbs = require('hbs');
 var sql = require('mysql');
 var parser = require('body-parser');
+var session = require('express-session');
 
 var controllers = require('./controllers.js');
 
 var app = express();
+
+app.use(session({
+	secret: 'password',
+	resave: false,
+	saveUninitialized: true
+}));
+
+app.use(function(req, res, next) {
+	res.locals.request = req;
+	if(req.session != null && req.session.user != null) {
+		res.locals.username = req.session.user;
+	}
+	next(null, req, res);
+});
 
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));

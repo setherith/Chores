@@ -16,7 +16,7 @@ module.exports = function(app, conn) {
     app.get('/', function(req, res) {
         conn.query('select t.*, u.username creator from tasks t, users u where t.creator = u.id;', function(err, rows) {
             if(err) console.log(err);
-            res.render('index.html', {'model' : rows});
+            res.render('index.html', {'model' : rows, 'username' : req.session.user});
         });
     });
 

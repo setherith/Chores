@@ -27,13 +27,12 @@ module.exports = function(app, conn) {
                 res.redirect('/user/login');
             } else if(rows[0][fields[0].name] == 1) {
                 // ----- Valid -----
-                console.log('User [' + req.body.username + '] logged on.');
                 conn.query('select * from tasks', function(err, rows, fields) {
                     if(err) console.log(err);
+                    req.session.user = req.body.username;
                     res.render('index.html', {
                         'model' : rows, 
-                        'fields' : fields,
-                        'username' : req.body.username
+                        'fields' : fields
                     });
                 });
             }
