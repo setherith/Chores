@@ -1,41 +1,33 @@
 {{>header}}
-
-<style>
-	.error {
-		border: red 1px solid;
-		background: #ffeeee;
-		color: #333;
-		padding: 10px;
-		text-align: center;
-		width: 100px;
-		margin: 20px;
-	}
-</style>
-
-	
 <body>
-	
-	<h1>Create Account</h1>
+	<div class="container">
+		<div class="row col-md-4 col-md-offset-4">
+			<h3>Create an Account</h3>
+			<form action="/user/add" method="post">
+				<div class="form-group">
+					<label>Username:</label>
+					<input class="form-control" type="text" name="username" value="{{username}}" />
+				</div>
+				<div class="form-group">
+					<label>Password:</label>
+					<input class="form-control" type="password" name="password" />
+				</div>
+				<div class="form-group">
+					<label>Confirm Password:</label>
+					<input class="form-control" type="password" name="confirmpw" />
+				</div>
+				<div class="form-group">
+					<label>Email:</label>
+					<input class="form-control" type="email" name="email" value="{{email}}" />
+				</div>
+				
+				{{#if err}}
+					<div class="alert alert-warning">{{err}}</div>
+				{{/if}}
 
-	<form action="/user/add" method="post">
-		
-		<label>Username:</label>
-		<input type="text" name="username" value="{{username}}" />
-		
-		<label>Password:</label>
-		<input type="password" name="password" />
-		
-		<label>Confirm Password:</label>
-		<input type="password" name="confirmpw" />
-		
-		{{#if err}}
-			<div class="error">{{err}}</div>
-		{{/if}}
-
-		<label>Email:</label>
-		<input type="email" name="email" value="{{email}}" />
-		
-		<button type="submit">Submit</button>
-	</form>
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
 </body>
 {{>footer}}
