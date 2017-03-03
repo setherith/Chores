@@ -29,17 +29,12 @@ module.exports = function(app, conn) {
 
     // generic action control
     app.post('/task/action/:id', function(req, res) {
-        console.log('id: ' + req.params.id);
-        console.log('action: ' + req.body.action);
-        
         if(req.body.action == "delete") {
             conn.query('call delete_task(' + req.params.id + ')', function(err, rows) {
                 if(err) console.log(err);
                 res.redirect('/');
             });
         } else if(req.body.action == "update") {
-            console.log('name: ' + req.body.name);
-            console.log('complete: ' + req.body.complete);
             conn.query('update tasks set name = \'' + req.body.name + 
                         '\', created = sysdate() where id = ' + req.params.id, function(err, rows) {
                             if(err) console.log(err);
