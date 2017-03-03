@@ -1,37 +1,34 @@
 {{>header}}
+
 <body>
 	<div class="container">
 		<div class="row col-md-4 col-md-offset-4" style="margin-top: 20px;">
 			<h3>Task Information</h3>
-			<div class="form-group">
-				<label>Id:</label>
-				<input class="form-control" type="text" disabled="disabled" value="{{task.id}}" />
-			</div>
-			<div class="form-group">
-				<label>Name:</label>
-				<input class="form-control" type="text" value="{{task.name}}" />
-			</div>
-			<div class="form-group">
-				<label>Creator:</label>
-				<input class="form-control" type="text" disabled="disabled" value="{{creator}}" />
-			</div>
-			<div class="form-group">
-				<label>created:</label>
-				<input class="form-control" type="text" value="{{task.created}}" />
-			</div>
-			<div class="form-inline">
-				<label>complete:</label>
-				<input class="form-control" type="checkbox" value="{{task.complete}}" />
-			</div>
-			<div class="form-inline">
-				<form action="/task/action/{{task.id}}" method="post">
-					<button class="btn btn-primary">Update</button>
-					<button class="btn btn-danger">Delete</button>
-					<button class="btn btn-default">Take Ownership</button>
-				</form>
-			</div>
-			</div>
+			<form action="/task/action/{{task.id}}" method="post">
+				<div class="form-group">
+					<label>Name:</label>
+					<input class="form-control" type="text" name="name" value="{{task.name}}" />
+				</div>
+				<div class="form-group">
+					<label>Creator:</label>
+					<input class="form-control" type="text" disabled="disabled" value="{{creator}}" />
+				</div>
+				<div class="form-group">
+					<label>Created / Updated:</label>
+					<input class="form-control" type="text" disabled="disabled" value="{{{ShortDate task.created}}}" />
+				</div>
+				<div class="form-inline">
+					<label>Complete:</label>
+					<input class="form-control" type="checkbox" name="complete" value="{{task.complete}}" />
+				</div>
+				<div class="form-inline">
+					<button class="btn btn-primary" value="update" name="action">Update</button>
+					<button class="btn btn-danger" value="delete" name="action">Delete</button>
+					<button class="btn btn-default" value="take" name="action">Take Ownership</button>
+				</div>
+			</form>
 		</div>
+	</div>
 	</div>
 </body>
 {{>footer}}
