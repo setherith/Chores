@@ -18,10 +18,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>name</td>
-                            <td>created</td>
-                            <td>creator</td>
-                            <td>complete</td>
+                            <td>Name</td>
+                            <td>Created</td>
+                            <td>Creator</td>
+                            <td>Complete</td>
                         </tr>
                     </thead>
                     {{#each model}}
@@ -29,7 +29,11 @@
                             <td><a href="/task/info/{{id}}">{{name}}</a></td>
                             <td>{{created}}</td>
                             <td>{{creator}}</td>
-                            <td>{{complete}}</td>
+                            {{#if complete}}
+								<td><span class="glyphicon glyphicon-ok"></span></td>
+							{{else}}
+								<td><span class="glyphicon glyphicon-remove"></span></td>								
+							{{/if}}
                         </tr>
                     {{/each}}                
                 </table>

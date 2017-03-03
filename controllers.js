@@ -14,9 +14,9 @@ module.exports = function(app, conn) {
 
     // display the home page
     app.get('/', function(req, res) {
-        conn.query('select * from tasks', function(err, rows, fields) {
+        conn.query('select t.*, u.username creator from tasks t, users u where t.creator = u.id;', function(err, rows) {
             if(err) console.log(err);
-            res.render('index.html', {'model' : rows, 'fields' : fields});
+            res.render('index.html', {'model' : rows});
         });
     });
 
