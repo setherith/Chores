@@ -2,13 +2,15 @@
 module.exports = function(app, conn) {
 
     var login_fails = 0;
+    var has_failed = false;
 
     // display login form
     app.get('/user/login', function(req, res) {
         res.render('./user/login.html', 
         {
             'attempts' : login_fails,
-            'unlocked' : login_fails < 3
+            'unlocked' : login_fails < 3,
+            'failed' : has_failed
         });
     });
 
@@ -21,10 +23,8 @@ module.exports = function(app, conn) {
             if (rows[0][fields[0].name] == 0) {
                 // ----- Not Valid -----
                 login_fails++;
-                res.render('./user/login.html', {
-                    'attempts' : login_fails,
-                    'unlocked' : login_fails < 3
-                });
+                has_failed = true;
+                res.redirect('/user/login');
             } else if(rows[0][fields[0].name] == 1) {
                 // ----- Valid -----
                 console.log('User [' + req.body.username + '] logged on.');
