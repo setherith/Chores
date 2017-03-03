@@ -11,6 +11,15 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/css'));
 
+hbs.registerHelper('ShortDate', function(value) {
+	var d = new Date(value);
+	var month = Number(d.getMonth() + 1);
+	if (month < 10) { month = '0' + month; }
+	var day = d.getDate();
+	if (day < 10) { day = '0' + day; }
+	return new hbs.SafeString(day + '/' + month + '/' + d.getFullYear());
+});
+
 app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
 

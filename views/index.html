@@ -15,19 +15,19 @@
 
         <div id="board" class="row">
             {{#if model}}
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <td>Name</td>
-                            <td>Created</td>
-                            <td>Creator</td>
-                            <td>Complete</td>
+                            <td><strong>Name</strong></td>
+                            <td><strong>Created</strong></td>
+                            <td><strong>Creator</strong></td>
+                            <td><strong>Complete</strong></td>
                         </tr>
                     </thead>
                     {{#each model}}
                         <tr>
                             <td><a href="/task/info/{{id}}">{{name}}</a></td>
-                            <td>{{created}}</td>
+                            <td>{{{ShortDate created}}}</td>
                             <td>{{creator}}</td>
                             {{#if complete}}
 								<td><span class="glyphicon glyphicon-ok"></span></td>
