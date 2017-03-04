@@ -14,8 +14,8 @@
         <a href="/">Main</a>
         <a href="/user/login">Login</a>
         <a href="/task/add">Add Task</a>
-        {{#if req.session.admin}}
-            <a href="/admin/users"></a>
+        {{#if admin}}
+            <a href="/admin/users">Admin: Users</a>
         {{/if}}
     </span>
 </div>
