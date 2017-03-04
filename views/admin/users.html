@@ -2,23 +2,21 @@
 <body>
     <div class="container">
         <div class="row col-md-6 col-md-offset-3">
-            <table class="table table-stripped">
+            <table class="table table-striped">
                 <thead>
-                    <td>Id</td>
-                    <td>Username</td>
-                    <td>Completed</td>
-                    <td>Created</td>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Completed</th>
+                    <th>Created</th>
                 </thead>
-                <tbody>
-                    {{#each users}}
-                        <tr>
-                            <td>{{id}}</td>
-                            <td>{{username}}</td>
-                            <td>{{completed}}</td>
-                            <td>{{{ShortDate created}}}</td>
-                        </tr>
-                    {{/each}}
-                </tbody>
+                {{#each users}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{username}}</td>
+                        <td>{{completed}}</td>
+                        <td>{{{ShortDate created}}}</td>
+                    </tr>
+                {{/each}}
             </table>
         </div>
     </div>
