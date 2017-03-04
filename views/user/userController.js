@@ -27,13 +27,11 @@ module.exports = function (app, conn) {
                     res.redirect('/user/login');
                 } else if (rows[0][fields[0].name] == 1) {
                     // ----- Valid -----
-                    conn.query('select * from tasks', function (err, rows, fields) {
+                    conn.query('call is_admin(\'' + req.body.username + '\')', function (err, rows) {
                         if (err) console.log(err);
+                        req.session.admin = rows[0][0].admin == 1;
                         req.session.user = req.body.username;
-                        res.render('index.html', {
-                            'model': rows,
-                            'fields': fields
-                        });
+                        res.redirect('/');
                     });
                 }
             });

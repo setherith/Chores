@@ -110,3 +110,22 @@ values ('Put dishes away', sysdate(), 1, false),
 
 insert into users (username, password, created)
 values ('test_user', md5('password123'), sysdate());
+
+-- is adminusers
+
+USE `chores`;
+DROP procedure IF EXISTS `is_admin`;
+
+DELIMITER $$
+USE `chores`$$
+CREATE PROCEDURE `is_admin` (in p_username varchar(45))
+BEGIN
+	select admin from users where username = p_username;
+END$$
+
+DELIMITER ;
+
+-- table change
+
+ALTER TABLE `chores`.`users` 
+ADD COLUMN `admin` TINYINT NOT NULL DEFAULT 0 AFTER `created`;
