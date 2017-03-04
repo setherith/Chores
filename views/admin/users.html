@@ -1,0 +1,25 @@
+{{>header}}
+<body>
+    <div class="container">
+        <div class="row col-md-6 col-md-offset-3">
+            <table class="table table-stripped">
+                <thead>
+                    <td>Id</td>
+                    <td>Username</td>
+                    <td>Completed</td>
+                    <td>Created</td>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{username}}</td>
+                            <td>{{completed}}</td>
+                            <td>{{{ShortDate created}}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
