@@ -12,10 +12,15 @@ module.exports = function(app, conn) {
         res.render('test.html', {'message' : "Hello, World!"});
     });
 
+    // admin: users
     app.get('/admin/users', function(req, res) {
-        conn.query('select * from users', function(err, rows) {
-            res.render('./admin/users.html', {'users' : rows});
-        });
+        if (req.session.admin) {
+            conn.query('select * from users', function(err, rows) {
+                res.render('./admin/users.html', {'users' : rows});
+            });
+        } else {
+            res.redirect('/');
+        }
     });
 
     // display the home page
