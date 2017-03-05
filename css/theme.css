@@ -11,3 +11,8 @@
     background: #5f5; 
     border-top: 2px solid #1a1;
 }
+
+.header {
+    background: #5f5;
+    border-bottom: 2px solid #1a1;
+}
