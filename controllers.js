@@ -23,6 +23,12 @@ module.exports = function(app, conn) {
         }
     });
 
+    // admin: users
+    app.post('/admin/users/:id', function(req, res) {
+        console.log(req.body.action + " " + req.params.id);
+        res.redirect('/admin/users');
+    });
+
     // display the home page
     app.get('/', function(req, res) {
         conn.query('select t.*, u.username creator from tasks t, users u where t.creator = u.id;', function(err, rows) {

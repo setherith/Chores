@@ -1,23 +1,32 @@
-{{>header}}
+{{>header this}}
 <body>
     <div class="container">
         <div class="row col-md-6 col-md-offset-3">
-            <table class="table table-striped">
-                <thead>
-                    <th>Id</th>
-                    <th>Username</th>
-                    <th>Completed</th>
-                    <th>Created</th>
-                </thead>
-                {{#each users}}
-                    <tr>
-                        <td>{{id}}</td>
-                        <td>{{username}}</td>
-                        <td>{{completed}}</td>
-                        <td>{{{ShortDate created}}}</td>
-                    </tr>
-                {{/each}}
-            </table>
+            <form action="/admin/users/" method="post">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Completed</th>
+                        <th>Created</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </thead>
+                    {{#each users}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{username}}</td>
+                            <td>{{completed}}</td>
+                            <td>{{{ShortDate created}}}</td>
+                            <td>{{admin}}</td>
+                            <td>
+                                <button type="submit" name="action" value="remove"><span class="glyphicon glyphicon-remove"></span></button>
+                                <a href="#" style="color: gold;"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </table>
+            </form>
         </div>
     </div>
 </body>
