@@ -111,9 +111,6 @@ values ('Put dishes away', sysdate(), 1, false),
 insert into users (username, password, created)
 values ('test_user', md5('password123'), sysdate());
 
-insert into users (username, password, created, admin)
-values ('admin_user', md5('password123'), sysdate(), true);
-
 -- is adminusers
 
 USE `chores`;
@@ -132,3 +129,8 @@ DELIMITER ;
 
 ALTER TABLE `chores`.`users` 
 ADD COLUMN `admin` TINYINT NOT NULL DEFAULT 0 AFTER `created`;
+
+-- test admin account
+
+insert into users (username, password, created, admin)
+values ('admin_user', md5('password123'), sysdate(), true);
