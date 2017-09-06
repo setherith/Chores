@@ -35,7 +35,10 @@ module.exports = function(app, conn) {
                 res.redirect('/');
             });
         } else if(req.body.action == "update") {
+            var complete = 0;
+            if (req.body.complete == 'on') complete = 1;
             conn.query('update tasks set name = \'' + req.body.name + 
+                        '\', complete = \'' + complete + 
                         '\', created = sysdate() where id = ' + req.params.id, function(err, rows) {
                             if(err) console.log(err);
                             res.redirect('/');
