@@ -19,7 +19,7 @@
 				</div>
 				<div class="form-inline">
 					<label>Complete:</label>
-					<input class="form-control" type="checkbox" name="complete" checked="{{task.complete}}" />
+					<input class="form-control" type="checkbox" name="complete" {{#if task.complete}}checked{{/if}} />
 				</div>
 				<div class="form-inline">
 					<button class="btn btn-primary" value="update" name="action">Update</button>
