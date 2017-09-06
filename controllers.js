@@ -8,10 +8,6 @@ module.exports = function(app, conn) {
     var taskController = require('./views/task/taskController.js');
     taskController(app, conn);
 
-    app.get('/test', function(req, res) {
-        res.render('test.html', {'message' : "Hello, World!"});
-    });
-
     // admin: users
     app.get('/admin/users', function(req, res) {
         if (req.session.admin) {
