@@ -16,7 +16,10 @@ module.exports = function(app, conn) {
 
     // task add (default)
     app.get('/task/add', function(req, res) {
-        res.render('./task/add.html');
+        conn.query('select count(1), name from tasks group by name order by count(1) desc;', function(err, rows) {
+            if(err) console.log(err);
+            res.render('./task/add.html', {'tasks':rows});
+        });
     });
 
     // task insert

@@ -5,7 +5,12 @@
         <form action="/task/add" method="post">
             <div class="form-group">
                 <label>Task: </label>
-                <input id="name" type="text" name="name" class="form-control" onkeyup="count(this)" />
+                <input id="name" type="text" name="name" list="tasks" class="form-control" onkeyup="count(this)" />
+                <datalist id="tasks">
+                    {{#each tasks}}
+                        <option>{{name}}</option>
+                    {{/each}}
+                </datalist>
                 <div id="charNum" style="float: right;">0 / 150</div>
             </div>
             <button id="button" type="submit" class="btn btn-primary">Add</button>
