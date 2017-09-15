@@ -13,11 +13,11 @@ module.exports = function(app, conn) {
     
     // display the home page
     app.get('/', function(req, res) {
-        conn.query('select t.*, u.username creator from tasks t, users u where t.creator = u.id and t.complete = 0;', function(err, rows) {
+        conn.query('call default_view()', function(err, rows) {
             if(err) console.log(err);
             res.render('index.html', 
             {
-                'model' : rows, 
+                'model' : rows[0], 
                 'username' : req.session.user, 
                 'admin' : req.session.admin == 1
             });

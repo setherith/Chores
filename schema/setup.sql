@@ -136,3 +136,4 @@ insert into users (username, password, created, admin)
 values ('admin_user', md5('password123'), sysdate(), true);
 
 \. get_most_common.sql
+\. default_view.sql
