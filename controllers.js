@@ -13,15 +13,19 @@ module.exports = function(app, conn) {
     
     // display the home page
     app.get('/', function(req, res) {
-        conn.query('call default_view()', function(err, rows) {
-            if(err) console.log(err);
-            res.render('index.html', 
-            {
-                'model' : rows[0], 
-                'username' : req.session.user, 
-                'admin' : req.session.admin == 1
+        if (req.session.user == undefined) {
+            res.render('index.html');
+        } else {
+            conn.query('call default_view()', function(err, rows) {
+                if(err) console.log(err);
+                res.render('index.html', 
+                {
+                    'model' : rows[0], 
+                    'username' : req.session.user, 
+                    'admin' : req.session.admin == 1
+                });
             });
-        });
+        }
     });
 
 };
