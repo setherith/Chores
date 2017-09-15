@@ -8,23 +8,9 @@ module.exports = function(app, conn) {
     var taskController = require('./views/task/taskController.js');
     taskController(app, conn);
 
-    // admin: users
-    app.get('/admin/users', function(req, res) {
-        if (req.session.admin) {
-            conn.query('select * from users', function(err, rows) {
-                res.render('./admin/users.html', {'users' : rows});
-            });
-        } else {
-            res.redirect('/');
-        }
-    });
-
-    // admin: users
-    app.post('/admin/users/:id', function(req, res) {
-        console.log(req.body.action + " " + req.params.id);
-        res.redirect('/admin/users');
-    });
-
+    var adminController = require('./views/admin/adminController.js');
+    adminController(app, conn);
+    
     // display the home page
     app.get('/', function(req, res) {
         conn.query('select t.*, u.username creator from tasks t, users u where t.creator = u.id and t.complete = 0;', function(err, rows) {
