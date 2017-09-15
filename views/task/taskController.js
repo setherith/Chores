@@ -16,9 +16,9 @@ module.exports = function(app, conn) {
 
     // task add (default)
     app.get('/task/add', function(req, res) {
-        conn.query('select count(1), name from tasks group by name order by count(1) desc;', function(err, rows) {
+        conn.query('call get_most_common()', function(err, rows) {
             if(err) console.log(err);
-            res.render('./task/add.html', {'tasks':rows});
+            res.render('./task/add.html', { 'tasks' : rows[0] });
         });
     });
 

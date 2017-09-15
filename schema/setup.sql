@@ -134,3 +134,5 @@ ADD COLUMN `admin` TINYINT NOT NULL DEFAULT 0 AFTER `created`;
 
 insert into users (username, password, created, admin)
 values ('admin_user', md5('password123'), sysdate(), true);
+
+\. get_most_common.sql
