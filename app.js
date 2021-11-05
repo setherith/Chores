@@ -6,6 +6,9 @@ var session = require('express-session');
 
 var controllers = require('./controllers.js');
 
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
 var app = express();
 
 app.use(session({
@@ -57,6 +60,5 @@ var conn = sql.createConnection({
 
 controllers(app, conn);
 
-app.listen(process.env.PORT || 3000, function() {
-	console.log("Server Running...\nhttp://localhost:" + (process.env.PORT || 3000));
-});
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
