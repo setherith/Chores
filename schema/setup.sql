@@ -4,7 +4,7 @@ create schema `chores` default character set utf8 collate utf8_bin;
 
 -- USER
 use chores;
-drop user 'chores_user'@'localhost';
+drop user if exists 'chores_user'@'localhost';
 create user 'chores_user'@'localhost' identified by 'user_chores'; 
 grant select, update, execute on chores.* to 'chores_user'@'localhost';
 
@@ -88,6 +88,8 @@ drop function if exists `validate_user`;
 DELIMITER $$
 use `chores`$$
 create function `validate_user` (p_username varchar(45), p_password varchar(32)) returns int(1)
+READS SQL DATA
+DETERMINISTIC
 begin
   declare result int(1);
   
@@ -134,6 +136,3 @@ ADD COLUMN `admin` TINYINT NOT NULL DEFAULT 0 AFTER `created`;
 
 insert into users (username, password, created, admin)
 values ('admin_user', md5('password123'), sysdate(), true);
-
-\. get_most_common.sql
-\. default_view.sql

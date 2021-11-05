@@ -13,3 +13,11 @@ There are currently two user accounts setup:
 * admin_user
 
 Both have a password of "password123"
+
+# Setup
+docker build -t setherith/chores-db . -f Dockerfile.db
+docker build -t setherith/chores-web . -f Dockerfile.web
+
+# Start
+docker run -d -p 3306:3306 setherith/chores-db
+docker run -d -p 80:8080 setherith/chores-web
