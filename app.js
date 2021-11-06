@@ -52,7 +52,7 @@ app.use(parser.urlencoded({
 app.use(parser.json());
 
 var conn = sql.createConnection({
-	host: "localhost",
+	host: "db",
 	user: "chores_user",
 	password: "user_chores",
 	database: "chores"
@@ -61,4 +61,4 @@ var conn = sql.createConnection({
 controllers(app, conn);
 
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log(`Server Running...`);

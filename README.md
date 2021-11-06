@@ -19,5 +19,8 @@ docker build -t setherith/chores-db . -f Dockerfile.db
 docker build -t setherith/chores-web . -f Dockerfile.web
 
 # Start
-docker run -d -p 3306:3306 setherith/chores-db
-docker run -d -p 80:8080 setherith/chores-web
+docker run --name db -d -p 3306:3306 setherith/chores-db
+docker run --name web --link db -d -p 80:8080 setherith/chores-web
+
+# Docker Notes
+docker rm $(docker ps --filter status=exited -q)
