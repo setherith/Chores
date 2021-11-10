@@ -22,5 +22,11 @@ docker build -t setherith/chores-web . -f Dockerfile.web
 docker run --name db -d -p 3306:3306 setherith/chores-db
 docker run --name web --link db -d -p 80:8080 setherith/chores-web
 
+# Flask
+cd ./web
+set FLASK_APP=app
+set FLASK_DEBUG=1
+flask run --host=0.0.0.0
+
 # Docker Notes
 docker rm $(docker ps --filter status=exited -q)
