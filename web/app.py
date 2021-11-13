@@ -1,18 +1,21 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 from database import DatabaseConnection
 
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def home():
+    return render_template('index.html')
+
+@app.route('/tasks')
+def task():
     dc = DatabaseConnection()
     tasks = []
     
     for id, name, created, creator, complete in dc.execute("select * from tasks"):
-        tasks.append({"name": name})
+        tasks.append({"id": id, "name": name, "created": created, "creator": creator, "complete": complete})
 
-    print (tasks)
-    return tasks[0]
+    return render_template('tasks.html', tasks=tasks)
 
-
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
