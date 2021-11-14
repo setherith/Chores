@@ -1,13 +1,26 @@
 .stickynote {
-    background: slateblue;
+    background: gold;
     width: 200px;
     height: 200px;
     font-family: 'Yuji Boku';
     font-size: 1.5em;
     text-align: center;
     vertical-align: middle;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
 }
 
 .task-title {
     vertical-align: middle;
+}
+
+.float-container {
+    padding: 20px;
+}
+
+.float-child {
+    width: 15%;
+    float: left;
+    padding: 20px;
 }

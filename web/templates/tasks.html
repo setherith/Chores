@@ -2,11 +2,15 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <h1>Tasks</h1>
-{% for task in tasks %}
-<div class="stickynote">
-    <div class="task-title">
-        {{task.name}}
+<div class="float-container">
+    {% for task in tasks %}
+    <div class="float-child">
+        <div class="stickynote">
+            <div class="task-title">
+                {{task.name}}
+            </div>
+        </div>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
